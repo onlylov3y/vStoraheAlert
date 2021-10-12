@@ -1,0 +1,22 @@
+[Unit] 
+Description=Viettel Storage Alert
+[Service]
+User=root
+# The configuration file application.properties should be here:
+#change this to your workspace
+
+WorkingDirectory=/home/thangdv/StorageAlert
+
+#path to executable. 
+#executable is a bash script which calls jar file
+
+ExecStart=/home/thangdv/StorageAlert/service.sh run
+
+SuccessExitStatus=143
+#10 mins
+TimeoutStopSec=600
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

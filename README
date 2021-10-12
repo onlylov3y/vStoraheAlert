@@ -1,0 +1,26 @@
+Welcome Viettel Storage Alert...
+
+Bắt đầu nào!!
+1. Cấu hình một số file:
+- config/notif.conf Cấu hình gửi thông báo, notifQuota1 ngưỡng gửi thông báo 1, notifQuota2 ngưỡng gửi thông báo 2
+- config/property.config Cấu hình thông tin DB, access EMS ECS.
+- config/storage-alert.service Cấu hình dịch vụ. (Ubuntu service). Thay đổi WorkingDirectory, ExecStart
+2. Khởi tạo và chạy dịch vụ:
+- sudo bash service.sh install : Cài đặt dịch vụ (chỉ cài đặt, không chạy).
+- sudo bash service.sh console : Khởi chạy dịch vụ chế độ console.
+- sudo bash service.sh start : Khởi chạy dịch vụ. 
+- sudo bash service.sh restart : Khởi động lại dịch vụ.
+- sudo bash service.sh stop : Tạm dừng dịch vụ. 
+- sudo bash service.sh export : Xuất báo cáo
+3. Chạy định kì:
+#Sử dụng crontab ubuntu.
+- sudo crontab -e
+#thêm vào cuối dòng lệnh sau:
+  30 * * * * sudo systemctl restart storage-alert
+#Chú thích: 30 * * * * là chạy dịch vụ vào mỗi phút thứ 30 của mỗi giờ, hàng ngày.
+4. Debug:
+- sudo bash service.sh console : Khởi chạy dịch vụ chế độ console.
+5. Nhật kí và bản ghi:
+- logs/ Thư mục chứ log theo ngày.
+- record/ Thư mục chỉ chứa nhật kí người dùng được gửi thông báo.
+- report/ Thư mục chứa báo cáo mức sử dụng storage theo user.
